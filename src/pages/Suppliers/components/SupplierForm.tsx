@@ -4,7 +4,7 @@ import {
   Button,
   FormControl,
   Stack,
-  TextField,
+  TextField
 } from "@mui/material"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
@@ -46,6 +46,7 @@ export default function SupplierForm() {
   }, [id, setValue, suppliers])
 
   const onSubmit = (data: Supplier) => {
+    console.log(data)
     if (!id) {
       setSuppliers([...suppliers, { ...data, id: suppliers.length + 1 }])
     } else {
@@ -69,6 +70,7 @@ export default function SupplierForm() {
       sx={{ p: 2 }}
     >
       <TextField
+        autoFocus
         error={!!errors.name}
         fullWidth={true}
         helperText={errors.name?.message}
@@ -92,7 +94,7 @@ export default function SupplierForm() {
                 {...field}
               >
                 <TextField
-                  label="CPF"
+                  label="CNPJ"
                   fullWidth={true}
                   error={!!errors.cnpj}
                   helperText={errors.cnpj?.message}
@@ -115,13 +117,6 @@ export default function SupplierForm() {
         sx={{ marginBottom: 2 }}
       >
         <TextField
-          error={!!errors.email}
-          fullWidth={true}
-          helperText={errors.email?.message}
-          label="E-mail"
-          {...register("email")}
-        />
-        <TextField
           error={!!errors.description}
           fullWidth={true}
           helperText={errors.description?.message}
@@ -140,7 +135,10 @@ export default function SupplierForm() {
         >
           Criar Fornecedor
         </Button>
-        <Button component={RouterLink} to="/suppliers">
+        <Button
+          component={RouterLink}
+          to="/suppliers"
+        >
           Cancelar
         </Button>
       </Stack>

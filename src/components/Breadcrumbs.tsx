@@ -15,10 +15,6 @@ interface BreadcrumbProps {
 export default function Breadcrumbs({ path }: BreadcrumbProps) {
   return (
     <MaterialBreadcrumbs aria-label="breadcrumb">
-      <Link underline="hover" color="inherit" component={RouterLink} to="/">
-        Dashboard
-      </Link>
-
       {path.map((item, index) =>
         item.to ? (
           <Link
