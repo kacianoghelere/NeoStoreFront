@@ -47,7 +47,7 @@ export default function SupplierTable() {
     {
       field: "cnpj",
       headerName: "CNPJ",
-      width: 150
+      width: 200
     },
     {
       field: "actions",

@@ -4,10 +4,14 @@ interface FormTitleProps {
   title: string
 }
 
-export default function FormTitle({ title }: FormTitleProps) {
-  return (
-    <Typography color="text.primary" variant="h6" sx={{ marginBottom: 2 }}>
-      {title}
-    </Typography>
-  )
-}
+const FormTitle: React.FC<FormTitleProps> = ({ title })  => (
+  <Typography
+    color="text.primary"
+    sx={{ marginBottom: 2 }}
+    variant="h6"
+  >
+    {title}
+  </Typography>
+)
+
+export default FormTitle

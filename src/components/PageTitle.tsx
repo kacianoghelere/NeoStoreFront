@@ -4,10 +4,13 @@ interface PageTitleProps {
   title: string
 }
 
-export default function PageTitle({ title }: PageTitleProps) {
-  return (
-    <Typography color="text.primary" variant="h5">
-      {title}
-    </Typography>
-  )
-}
+const PageTitle: React.FC<PageTitleProps> = ({ title }) => (
+  <Typography
+    color="text.primary"
+    variant="h5"
+  >
+    {title}
+  </Typography>
+)
+
+export default PageTitle
