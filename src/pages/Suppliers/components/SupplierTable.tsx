@@ -19,7 +19,7 @@ export default function SupplierTable() {
   const onEdit = (params: GridRenderCellParams) => {
     if (!params.row.id) return
 
-    navigate(`/suppliers/${params.row.id}`)
+    navigate(`/${params.row.id}`)
   }
 
   const onDelete = (params: GridRenderCellParams) => {

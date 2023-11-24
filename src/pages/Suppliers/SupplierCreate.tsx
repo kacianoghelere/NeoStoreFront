@@ -10,7 +10,7 @@ const SupplierCreate: React.FC = () => (
     <Stack sx={{ marginBottom: 2 }}>
       <PageTitle title="Criar Novo Fornecedor" />
       <Breadcrumbs
-        path={[{ label: "Fornecedores", to: "/suppliers/" }, { label: "Novo" }]}
+        path={[{ label: "Fornecedores", to: "/" }, { label: "Novo" }]}
       />
     </Stack>
     <Paper>

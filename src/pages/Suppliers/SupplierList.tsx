@@ -23,7 +23,7 @@ const SupplierList: React.FC = () => (
         <Button
           component={RouterLink}
           startIcon={<PersonAddAltIcon />}
-          to="/suppliers/new"
+          to="/new"
           variant="contained"
         >
           Novo Fornecedor

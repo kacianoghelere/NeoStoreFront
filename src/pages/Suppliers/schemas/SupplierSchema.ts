@@ -4,24 +4,15 @@ import { Supplier } from "../types/Supplier"
 
 export const SupplierSchema = yup
   .object<Supplier>({
-    fullName: yup.string().required("Este campo é obrigatório"),
-    document: yup.string().required("Este campo é obrigatório"),
-    birthDate: yup.date(),
+    cnpj: yup
+      .string()
+      .required("Este campo é obrigatório")
+      .transform((value) => value.replace(/[^\d]+/g, "")),
+    description: yup.string(),
     email: yup
       .string()
       .email("E-mail não reconhecido")
       .required("Este campo é obrigatório"),
-    emailVerified: yup.boolean().default(false),
-    mobile: yup.string().required("Este campo é obrigatório"),
-    zipCode: yup
-      .string()
-      .required("Este campo é obrigatório")
-      .transform((value) => value.replace(/[^\d]+/g, "")),
-    addressName: yup.string().required("Este campo é obrigatório"),
-    number: yup.string().required("Este campo é obrigatório"),
-    complement: yup.string(),
-    neighborhood: yup.string().required("Este campo é obrigatório"),
-    city: yup.string().required("Este campo é obrigatório"),
-    state: yup.string().required("Este campo é obrigatório"),
+    name: yup.string().required("Este campo é obrigatório"),
   })
   .required()

@@ -9,7 +9,7 @@ const SupplierEdit: React.FC = () => (
     <Stack sx={{ marginBottom: 2 }}>
       <PageTitle title="Editar Fornecedor" />
       <Breadcrumbs
-        path={[{ label: "Fornecedores", to: "/suppliers/" }, { label: "Editar" }]}
+        path={[{ label: "Fornecedores", to: "/" }, { label: "Editar" }]}
       />
     </Stack>
     <Paper>

@@ -58,7 +58,7 @@ export default function SupplierForm() {
       setSuppliers(newSuppliers)
     }
 
-    navigate("/suppliers/")
+    navigate("/")
   }
 
   return (
