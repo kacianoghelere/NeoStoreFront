@@ -8,7 +8,6 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 
 import { theme } from "./theme.ts"
-
 import App from "./App.tsx"
 
 import "@fontsource/roboto/300.css"
