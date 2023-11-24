@@ -1,0 +1,21 @@
+import { Paper, Stack } from "@mui/material"
+
+import Breadcrumbs from "../../components/Breadcrumbs"
+import PageTitle from "../../components/PageTitle"
+import Form from "./components/SupplierForm"
+
+export default function SupplierEdit() {
+  return (
+    <>
+      <Stack sx={{ marginBottom: 2 }}>
+        <PageTitle title="Editar Fornecedor" />
+        <Breadcrumbs
+          path={[{ label: "Fornecedores", to: "/suppliers/" }, { label: "Editar" }]}
+        />
+      </Stack>
+      <Paper>
+        <Form />
+      </Paper>
+    </>
+  )
+}
