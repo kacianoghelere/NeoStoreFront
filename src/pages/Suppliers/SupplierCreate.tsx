@@ -3,7 +3,7 @@ import { Paper, Stack } from "@mui/material"
 import Breadcrumbs from "../../components/Breadcrumbs"
 import PageTitle from "../../components/PageTitle"
 import Form from "./components/SupplierForm"
-import React from 'react'
+import React from "react"
 
 const SupplierCreate: React.FC = () => (
   <>

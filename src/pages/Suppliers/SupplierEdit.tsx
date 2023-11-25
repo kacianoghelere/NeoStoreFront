@@ -2,7 +2,7 @@ import { Paper, Stack } from "@mui/material"
 
 import Breadcrumbs from "../../components/Breadcrumbs"
 import PageTitle from "../../components/PageTitle"
-import Form from "./components/SupplierForm"
+import SupplierForm from "./components/SupplierForm"
 
 const SupplierEdit: React.FC = () => (
   <>
@@ -13,7 +13,7 @@ const SupplierEdit: React.FC = () => (
       />
     </Stack>
     <Paper>
-      <Form />
+      <SupplierForm />
     </Paper>
   </>
 )

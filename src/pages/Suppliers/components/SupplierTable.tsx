@@ -6,13 +6,16 @@ import {
   GridRenderCellParams,
 } from "@mui/x-data-grid"
 import { useNavigate } from "react-router-dom"
-import { useLocalStorage } from "usehooks-ts"
 
-import DataTable from "../../../components/DataTable"
-import { Supplier } from "../types/Supplier"
+import { Supplier } from "~/@types/models/supplier"
+import { AsyncActions } from "~/store/modules/suppliers/suppliers-list"
+import { useDispatch, useSelector } from "~/utils/hooks"
+import DataTable from "~/components/DataTable"
 
 export default function SupplierTable() {
-  const [suppliers, setSuppliers] = useLocalStorage<Supplier[]>("suppliers", [])
+  const suppliersList = useSelector((state) => state.suppliers.list)
+
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -23,9 +26,7 @@ export default function SupplierTable() {
   }
 
   const onDelete = (params: GridRenderCellParams) => {
-    if (!params.row.id) return
-
-    setSuppliers(suppliers.filter((supplier) => supplier.id !== params.row.id))
+    dispatch(AsyncActions.deleteSupplier(params.row.id))
   }
 
   const columns: GridColDef<Supplier>[] = [
@@ -81,7 +82,8 @@ export default function SupplierTable() {
   return (
     <DataTable
       columns={columns}
-      rows={suppliers as Supplier[]}
+      loading={suppliersList.isLoading}
+      rows={suppliersList.data || []}
     />
   )
 }

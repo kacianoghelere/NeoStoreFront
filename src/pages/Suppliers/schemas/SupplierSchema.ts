@@ -1,6 +1,6 @@
 import * as yup from "yup"
 
-import { Supplier } from "../types/Supplier"
+import { Supplier } from "../../../@types/models/supplier"
 
 export const SupplierSchema = yup
   .object<Supplier>({

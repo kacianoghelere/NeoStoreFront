@@ -10,15 +10,20 @@ import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import InputMask from "react-input-mask"
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom"
-import { useLocalStorage } from "usehooks-ts"
 
+import { Supplier } from "~/@types/models/supplier"
+import { AsyncActions } from "~/store/modules/suppliers/suppliers-list"
+import { useDispatch, useSelector } from '~/utils/hooks'
 import { SupplierSchema } from "../schemas/SupplierSchema"
-import { Supplier } from "../types/Supplier"
 
 export default function SupplierForm() {
-  const [suppliers, setSuppliers] = useLocalStorage<Supplier[]>("suppliers", [])
-
   const { id } = useParams()
+
+  const supplier = useSelector(({ suppliers }) => (
+    suppliers.list.data!.find(({ id: supplierId }) => `${supplierId}` === id)
+  ))
+
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -35,27 +40,22 @@ export default function SupplierForm() {
   useEffect(() => {
     if (!id) return
 
-    const supplier = suppliers.find((supplier) => `${supplier.id}` === id)
-
     if (!supplier) return
 
     setValue("name", supplier.name)
     setValue("cnpj", supplier.cnpj)
     setValue("email", supplier.email)
     setValue("description", supplier.description)
-  }, [id, setValue, suppliers])
+  }, [id, setValue, supplier])
 
   const onSubmit = (data: Supplier) => {
-    console.log(data)
     if (!id) {
-      setSuppliers([...suppliers, { ...data, id: suppliers.length + 1 }])
+      dispatch(AsyncActions.createSupplier(data))
     } else {
-      const supplierIndex = suppliers.findIndex((supplier) => `${supplier.id}` === id)
-
-      const newSuppliers = [...suppliers]
-      newSuppliers[supplierIndex] = { ...data, id: +id }
-
-      setSuppliers(newSuppliers)
+      dispatch(AsyncActions.updateSupplier({
+        ...data,
+        id: +id
+      }))
     }
 
     navigate("/")
@@ -133,7 +133,7 @@ export default function SupplierForm() {
           type="submit"
           variant="contained"
         >
-          Criar Fornecedor
+          Salvar
         </Button>
         <Button
           component={RouterLink}
