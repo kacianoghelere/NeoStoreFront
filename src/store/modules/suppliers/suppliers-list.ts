@@ -72,7 +72,7 @@ const suppliersSlice = createSlice({
       .addCase(createSupplier.fulfilled, (state, action) => {
         state.data?.push(action.payload);
       })
-      .addCase(fetchSuppliers.pending, (state, action) => {
+      .addCase(fetchSuppliers.pending, (state) => {
         state.error = undefined
         state.isLoading = true
       })
