@@ -10,6 +10,10 @@ const create = async (supplier: Supplier) => (
   await api.post<Supplier>("/suppliers", supplier)
 )
 
+const batchCreate = async (suppliers: any) => (
+  await api.post<Supplier[]>("/suppliers/import", suppliers)
+)
+
 const findById = async (id: string | number) => (
   await api.get<Supplier>(`/suppliers/${id}`)
 )
@@ -25,6 +29,7 @@ const remove = async (id: string | number) => (
 )
 
 export default {
+  batchCreate,
   create,
   findAll,
   findById,

@@ -3,6 +3,7 @@ import {
   createAsyncThunk,
   createSlice
 } from "@reduxjs/toolkit"
+import Swal from 'sweetalert2'
 
 import { Supplier } from "~/@types/models/supplier"
 import { SuppliersListState } from "~/@types/store/modules/supplier"
@@ -47,6 +48,35 @@ const fetchSuppliers = createAsyncThunk<Supplier[]>(
   }
 )
 
+const importSuppliers = createAsyncThunk<Supplier[] | undefined, {}>(
+  `${moduleName}/import`,
+  async (batchData, thunkApi) => {
+    try {
+      const { data } = await SupplierService.batchCreate(batchData)
+
+      thunkApi.dispatch(fetchSuppliers())
+
+      Swal.fire({
+        title: 'Tudo pronto!',
+        text: 'A importação de fornecedores foi concluída com sucesso',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+
+      return data
+    } catch (error) {
+      Swal.fire({
+        title: 'Falha na importação',
+        text: 'Não foi possível importar os fornecedores, verifique seu arquivo.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+
+      return undefined
+    }
+  }
+)
+
 const updateSupplier = createAsyncThunk<Supplier, Supplier>(
   `${moduleName}/update`,
   async (supplier, thunkApi) => {
@@ -62,6 +92,7 @@ export const AsyncActions = {
   createSupplier,
   deleteSupplier,
   fetchSuppliers,
+  importSuppliers,
   updateSupplier
 }
 

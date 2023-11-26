@@ -38,12 +38,17 @@ export default function SupplierTable() {
     {
       field: "name",
       headerName: "Nome",
-      minWidth: 200
+      minWidth: 250
+    },
+    {
+      field: "description",
+      headerName: "Descrição",
+      minWidth: 250
     },
     {
       field: "email",
       headerName: "E-mail",
-      minWidth: 200
+      minWidth: 250
     },
     {
       field: "cnpj",
@@ -53,7 +58,7 @@ export default function SupplierTable() {
     {
       field: "actions",
       headerName: "Ações",
-      minWidth: 150,
+      minWidth: 100,
       sortable: false,
       renderCell: (params) => (
         <Stack
